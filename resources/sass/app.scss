@@ -1,0 +1,35 @@
+@import 'variables';
+
+.counter{
+    font-size: 10px;
+    margin-right: 20px;
+    text-align: center;
+
+    .vote, .answers{
+        width: 60px;
+        height: 60px;
+    }
+    strong{
+        font-size: 2em;
+        display: block;
+    }
+    .status{
+        &.unaswered{
+            border: none;
+        }
+
+        &.answered{
+            border: 1px solid $color-green;
+            color: $color-green;
+        }
+
+        &.answered-accepted{
+            background: $color-green;
+            color: $color-white;
+        }
+    }
+    .view{
+        margin-top: 10px;
+    }
+}
+

@@ -27,7 +27,7 @@ class QuestionFactory extends Factory
             'body' => $this->faker->paragraphs(2, true),
             'views' => rand(2, 20),
             'vote' => rand(-5, 11),
-            'answers' => rand(2, 5)
+            'answers' => rand(0, 4)
         ];
     }
 }
