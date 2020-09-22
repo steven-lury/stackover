@@ -3,6 +3,14 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
 @endpush
     @section('content')
+        <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
+
+            <h6 class="mb-0 lh-100">All Questions</h6>
+            <div class="ml-auto">
+                <a href="{{route('questions.create')}}" class="btn btn-primary">Ask A Question</a>
+            </div>
+            </div>
+        </div>
         <div class="container">
             @foreach ($questions as $question)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
