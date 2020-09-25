@@ -38,4 +38,9 @@ class Question extends Model
         }
         return ' unaswered';
     }
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
+    }
 }

@@ -4,27 +4,16 @@
 @endpush
     @section('content')
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-
-            <h6 class="mb-0 lh-100">All Questions</h6>
             <div class="ml-auto">
-                <a href="{{route('questions.create')}}" class="btn btn-primary">Ask A Question</a>
+                <a href="{{route('questions.index')}}" class="btn btn-primary">Back To All Questions</a>
             </div>
             </div>
         </div>
         <div class="container">
             @include('layouts._message')
-            @foreach ($questions as $question)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <div class="media-body">
-                        <a class="btn btn-sm btn-outline btn-primary" href="{{route('questions.edit', $question->id)}}">edit</a>
-                    </div>
 
-                    <form class="question-form" method="POST" action="{{route('questions.destroy', $question->id)}}">
-                        @method('DELETE')
-                        @csrf
-                    <button type="submit" class="btn btn-sm btn-outline btn-danger" onclick="return confirm('Are you sure');" >delete</button>
-                    </form>
-                    <h6 class="border-bottom border-gray pb-2 mb-0 media-body"><a href="{{route('questions.show', $question->slug)}}">{{$question->title}}</a></h6>
+                    <h3 class="border-bottom border-gray pb-2 mb-0 media-body">{{$question->title}}</h3>
                     <div class="media text-muted pt-3">
                         <div class="d-flex flex-column counter">
                             <div class="vote">
@@ -42,13 +31,10 @@
                         <small>Asked by:</small><strong class="d-block text-gray-dark">{{$question->user->name}}</strong><small>{{$question->created_date}}</small>
                     </p>
                     <p class="media-body">
-                        {{Str::limit($question->body, 250)}}
+                        {!! $question->body_html !!}
                     </p>
                     </div>
                 </div>
-            @endforeach
-
-            {{$questions->links()}}
         </div>
 
     @endsection

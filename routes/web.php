@@ -21,4 +21,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('questions', 'App\Http\Controllers\QuestionsController');
+Route::resource('questions', 'App\Http\Controllers\QuestionsController')->except('show');
+Route::get('questions/{slug}', 'App\Http\Controllers\QuestionsController@show')->name('questions.show');
