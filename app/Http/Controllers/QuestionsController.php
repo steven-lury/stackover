@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionRequest;
+use Facade\FlareClient\View;
 
 class QuestionsController extends Controller
 {
@@ -34,9 +36,10 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        //
+        $request->user()->questions()->create($request->only(['title', 'body']));
+        return redirect()->route('questions.index')->with('successMsg', 'Your questions has been submitted');
     }
 
     /**
@@ -58,7 +61,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -68,9 +71,10 @@ class QuestionsController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only(['title', 'body']));
+        return redirect()->route('questions.index')->with('successMsg', 'Your Question has been updated successfully');
     }
 
     /**
@@ -81,6 +85,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect()->route('questions.index')->with('successMsg', 'Question has been deleted successfully');
     }
 }

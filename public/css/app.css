@@ -33,3 +33,7 @@
   margin-top: 10px;
 }
 
+form.question-form {
+  display: inline;
+}
+

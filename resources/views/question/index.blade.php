@@ -12,9 +12,19 @@
             </div>
         </div>
         <div class="container">
+            @include('layouts._message')
             @foreach ($questions as $question)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <h6 class="border-bottom border-gray pb-2 mb-0"><a href="{{route('questions.show', $question->id)}}">{{$question->title}}</a></h6>
+                    <div class="media-body">
+                        <a class="btn btn-sm btn-outline btn-primary" href="{{route('questions.edit', $question->id)}}">edit</a>
+                    </div>
+
+                    <form class="question-form" method="POST" action="{{route('questions.destroy', $question->id)}}">
+                        @method('DELETE')
+                        @csrf
+                    <button type="submit" class="btn btn-sm btn-outline btn-danger" onclick="return confirm('Are you sure');" >delete</button>
+                    </form>
+                    <h6 class="border-bottom border-gray pb-2 mb-0 media-body"><a href="{{route('questions.show', $question->id)}}">{{$question->title}}</a></h6>
                     <div class="media text-muted pt-3">
                         <div class="d-flex flex-column counter">
                             <div class="vote">
