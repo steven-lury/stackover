@@ -17,9 +17,9 @@
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
                     <div class="media-body text-right">
                         @can('update', $question)
-                        
+
                             <a class="btn btn-sm btn-outline btn-primary" href="{{route('questions.edit', $question->id)}}">edit</a>
-                        
+
                          @endcan
                          @can('delete', $question)
                             <form class="question-form" method="POST" action="{{route('questions.destroy', $question->id)}}">
@@ -27,7 +27,7 @@
                             @csrf
                             <button type="submit" class="btn btn-sm btn-outline btn-danger" onclick="return confirm('Are you sure');" >delete</button>
                             </form>
-                        
+
                         @endcan
                     </div>
                     <h6 class="border-bottom border-gray pb-2 mb-0 media-body"><a href="{{route('questions.show', $question->slug)}}">{{$question->title}}</a></h6>
@@ -37,7 +37,7 @@
                                 <strong>{{$question->vote}} </strong>{{Str::plural('vote', $question->vote)}}
                             </div>
                             <div class="status {{$question->status}}">
-                                <strong>{{$question->answers}} </strong>{{Str::plural('answer', $question->answers)}}
+                                <strong>{{$question->answers_count}} </strong>{{Str::plural('answer', $question->_count)}}
                             </div>
                             <div class="views">
                                 <strong>{{$question->views}} </strong>{{Str::plural('view', $question->views)}}

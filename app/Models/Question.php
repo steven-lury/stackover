@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Answer;
 
 class Question extends Model
 {
@@ -33,7 +34,7 @@ class Question extends Model
     {
         if($this->best_answer_id > 0){
             return 'answered-accepted';
-        }elseif($this->answers > 0){
+        }elseif($this->answers_count > 0){
             return 'answered';
         }
         return ' unaswered';
@@ -42,5 +43,11 @@ class Question extends Model
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
+    }
+
+    public function answers(){
+
+        return $this->hasMany(Answer::class);
+
     }
 }
