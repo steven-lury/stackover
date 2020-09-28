@@ -7,35 +7,76 @@
             <div class="ml-auto">
                 <a href="{{route('questions.index')}}" class="btn btn-primary">Back To All Questions</a>
             </div>
-            </div>
         </div>
         <div class="container">
             @include('layouts._message')
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
 
-                    <h3 class="border-bottom border-gray pb-2 mb-0 media-body">{{$question->title}}</h3>
-                    <div class="media text-muted pt-3">
-                        <div class="d-flex flex-column counter">
-                            <div class="vote">
-                                <strong>{{$question->vote}} </strong>{{Str::plural('vote', $question->vote)}}
-                            </div>
-                            <div class="status {{$question->status}}">
-                                <strong>{{$question->answers}} </strong>{{Str::plural('answer', $question->answers)}}
-                            </div>
-                            <div class="views">
-                                <strong>{{$question->views}} </strong>{{Str::plural('view', $question->views)}}
+                <h3 class="border-bottom border-gray pb-2 mb-0 media-body">{{$question->title}}</h3>
+                <div class="media text-muted pt-3">
+                    <div class="d-flex flex-column counter">
+                        <div class="vote">
+                            <strong>{{$question->vote}} </strong>{{Str::plural('vote', $question->vote)}}
+                        </div>
+                        <div class="status {{$question->status}}">
+                            <strong>{{$question->answers_count}} </strong>{{Str::plural('answer', $question->answers_count)}}
+                        </div>
+                        <div class="views">
+                            <strong>{{$question->views}} </strong>{{Str::plural('view', $question->views)}}
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <p class="media-body">
+                            {!! $question->body_html !!}
+                        </p>
+                        <div class="float-right mt-2">
+                            <div class="media">
+                                <div class="media-body">
+                                    <small>Asked By: <strong class="text-gray-dark">{{$question->user->name}}</strong></small>
+                                    <img src="{{$question->user->avatar}}">
+                                    <div class="media mt-2">
+                                        <div class="media-body text-center">
+                                            <span><small>{{$question->created_date}}</small></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <small>Asked by:</small><strong class="d-block text-gray-dark">{{$question->user->name}}</strong><small>{{$question->created_date}}</small>
-                    </p>
-                    <p class="media-body">
-                        {!! $question->body_html !!}
-                    </p>
                     </div>
                 </div>
-        </div>
 
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h5>{{$question->answers_count ." ". Str::plural('Answer', $question->answers_count) }}</h5>
+                            </div>
+                            <hr>
+                            @foreach ($question->answers as $answer)
+                                <div class="media">
+                                    <div class="media-body">
+                                        {!! $answer->body_html !!}
+                                        <div class="media float-right">
+                                            <div class="media-body">
+                                                <small>Answered :</small><strong>{{$answer->user->name}}</strong>
+                                                <img src="{{$answer->user->avatar}}">
+                                                <div class="media mt-2">
+                                                    <div class="media-body text-center">
+                                                        <small>{{$answer->date}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endsection
 
