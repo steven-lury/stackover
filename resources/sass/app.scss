@@ -1,4 +1,7 @@
-@import 'variables';
+@import '_variables';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+
+//$fa-font-path: '../webfonts';
 
 .counter{
     font-size: 10px;
@@ -34,4 +37,25 @@
 }
 form.question-form{
     display:inline;
+}
+
+.vote-control{
+    min-width: 60px;
+    margin-right: 30px;
+    text-align: center;
+    color: yellow;
+    a, span {
+        display: block;
+    }
+    a{
+        cursor: pointer;
+    }
+    span{
+        &.favorite-count{
+            font-size: 12px;
+        }
+        &.vote-count{
+            font-size: 16px;
+        }
+    }
 }

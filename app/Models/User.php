@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Question;
+use App\Models\Answer;
 
 class User extends Authenticatable
 {
@@ -63,6 +64,11 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function answers(){
+
+        return $this->hasMany(Answer::class);
     }
 
     public function getAvatarAttribute()

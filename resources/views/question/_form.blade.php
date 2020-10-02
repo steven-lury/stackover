@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" name="title" value="{{old('title', $question->title)}}" class="form-control {{$errors->has('title') ? 'is-invalid' : ''}}" id="title" aria-describedby="titleHelp">
+    <input type="text" name="title" value="{!! old('title', '') !!}" class="form-control {{$errors->has('title') ? 'is-invalid' : ''}}" id="title" aria-describedby="titleHelp">
     @if($errors->has('title'))
         <div class="invalid-feedback">
             <strong> {{$errors->first('title')}}</strong>
@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="body">Description</label>
-    <textarea rows="6" class="form-control {{$errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body">{{old('body', $question->body)}}</textarea>
+    <textarea rows="6" class="form-control {{$errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body">{!! old('body', '')!!}</textarea>
     @if($errors->has('body'))
         <div class="invalid-feedback">
             <strong>{{$errors->first('body')}}</strong>
