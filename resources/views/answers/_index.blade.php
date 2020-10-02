@@ -22,13 +22,33 @@
                         </div>
                         <div class="media-body">
                             {!! $answer->body_html !!}
-                            <div class="media float-right">
-                                <div class="media-body">
-                                    <small>Answered :</small><strong>{{$answer->user->name}}</strong>
-                                    <img src="{{$answer->user->avatar}}">
-                                    <div class="media mt-2">
-                                        <div class="media-body text-center">
-                                            <small>{{$answer->date}}</small>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    @can('update', $answer)
+
+                                        <a class="btn btn-sm btn-outline-primary" href="{{route('questions.answers.edit', [$question->id, $answer->id])}}">edit</a>
+
+                                    @endcan
+                                    @can('delete', $answer)
+                                        <form class="question-form" method="POST" action="{{route('questions.answers.destroy', [$question->id, $answer->id])}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure');" >delete</button>
+                                        </form>
+
+                                    @endcan
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <div class="media float-right">
+                                        <div class="media-body">
+                                            <small>Answered :</small><strong>{{$answer->user->name}}</strong>
+                                            <img src="{{$answer->user->avatar}}">
+                                            <div class="media mt-2">
+                                                <div class="media-body text-center">
+                                                    <small>{{$answer->date}}</small>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

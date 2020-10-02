@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Answer;
 
 class AnswersController extends Controller
 {
@@ -59,9 +60,10 @@ class AnswersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+        return view('answers.edit', compact('answer', 'question'));
     }
 
     /**
@@ -71,9 +73,14 @@ class AnswersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+        $request->validate([
+            'body' => 'required|min:4'
+        ]);
+        $answer->update(['body' =>$request->body]);
+        return redirect()->route('questions.show', $question->slug)->with('successMsg', 'Your Answer is Updated successfully');
     }
 
     /**

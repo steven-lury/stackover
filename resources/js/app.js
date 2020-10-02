@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./fontawesome.js');
 
 import Vue from 'vue';
 

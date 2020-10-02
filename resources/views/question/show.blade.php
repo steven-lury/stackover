@@ -16,14 +16,14 @@
                 <div class="media text-muted pt-3">
                     <div class="d-flex flex-column vote-control">
                         <a class="vote-up">
-                            <i class="fas fa-caret-up"></i>
+                            <i class="fa fa-caret-up"></i>
                         </a>
                         <span class="vote-count">12</span>
                         <a class="vote-down">
-                            <i class="fas fa-caret-down"></i>
+                            <i class="fa fa-caret-down"></i>
                         </a>
                         <a class="favorite mt-2">
-                            <i class="fas fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </a>
                         <span class="favorite-count">33</span>
                     </div>
@@ -56,4 +56,6 @@
         </div>
     @endsection
 
-@push('js')
+    @push('js')
+        <script src="{{asset('js/app.js')}}"></script>
+    @endpush
