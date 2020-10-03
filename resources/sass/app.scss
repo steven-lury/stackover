@@ -43,7 +43,7 @@ form.question-form{
     min-width: 60px;
     margin-right: 30px;
     text-align: center;
-    color: yellow;
+    color:darkblue;
     a, span {
         display: block;
     }
@@ -61,5 +61,11 @@ form.question-form{
 
     .accepted{
         color: green;
+    }
+    .off, .favorite{
+        color: grey;
+    }
+    .favorited{
+        color: yellowgreen;
     }
 }

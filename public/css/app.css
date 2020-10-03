@@ -6129,7 +6129,7 @@ form.question-form {
   min-width: 60px;
   margin-right: 30px;
   text-align: center;
-  color: yellow;
+  color: darkblue;
 }
 
 .vote-control a,
@@ -6151,5 +6151,14 @@ form.question-form {
 
 .vote-control .accepted {
   color: green;
+}
+
+.vote-control .off,
+.vote-control .favorite {
+  color: grey;
+}
+
+.vote-control .favorited {
+  color: yellowgreen;
 }
 
