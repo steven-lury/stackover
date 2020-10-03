@@ -33,7 +33,7 @@ class Answer extends Model
         });
 
         static::deleted(function($answer){
-                $answer->question()->decrement('answers_count');
+            $answer->question()->decrement('answers_count');
         });
 
     }
@@ -46,5 +46,15 @@ class Answer extends Model
     public function getDateAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getAcceptedAttribute()
+    {
+        return $this->getIsBestAttribute() ? 'accepted' : '';
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->id === $this->question->best_answer_id;
     }
 }

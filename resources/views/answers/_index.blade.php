@@ -16,9 +16,23 @@
                             <a class="vote-down">
                                 <i class="fas fa-caret-down"></i>
                             </a>
-                            <a class="favorite mt-2">
-                                <i class="fas fa-check"></i>
-                            </a>
+                            @can('accept', $answer)
+                                <a class="{{$answer->accepted}} mt-2"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('accept-'+{{$answer->id}}).submit();
+                                ">
+                                <form action="{{route('answer.accept', $answer->id)}}" id="accept-{{$answer->id}}" method="POST">
+                                    @csrf
+                                </form>
+                                    <i class="fas fa-check"></i>
+                                </a>
+                            @else
+                                @if ($answer->is_best)
+                                    <a class="{{$answer->accepted}} mt-2">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                @endif
+                            @endcan
                         </div>
                         <div class="media-body">
                             {!! $answer->body_html !!}

@@ -6149,3 +6149,7 @@ form.question-form {
   font-size: 16px;
 }
 
+.vote-control .accepted {
+  color: green;
+}
+

@@ -24,3 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('questions', 'App\Http\Controllers\QuestionsController')->except('show');
 Route::get('questions/{slug}', 'App\Http\Controllers\QuestionsController@show')->name('questions.show');
 Route::resource('questions.answers', 'App\Http\Controllers\AnswersController')->except(['index', 'show', 'create']);
+Route::post('answers/{answer}/accept', 'App\Http\Controllers\AcceptAnswerController')->name('answer.accept');
