@@ -22,10 +22,22 @@
                         <a class="vote-down">
                             <i class="fa fa-caret-down"></i>
                         </a>
-                        <a class="favorite mt-2">
+                        <a class="favorite mt-2 {{Auth::guest() ? 'off': ($question->is_favorite ? 'favorited' : '')}}"
+                            onclick="event.preventDefault(); document.getElementById('favorite-'+{{$question->id}}).submit()"
+                        >
                             <i class="fa fa-star"></i>
                         </a>
-                        <span class="favorite-count">33</span>
+                        @if($question->is_favorite)
+                        <form id="favorite-{{$question->id}}" action="{{route('question.unfavorite', $question->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        @else
+                            <form id="favorite-{{$question->id}}" action="{{route('question.favorite', $question->id)}}" method="POST">
+                                @csrf
+                            </form>
+                        @endif
+                        <span class="favorite-count">{{$question->favorite_count}}</span>
                     </div>
                     <div class="media-body">
                         <p class="media-body">

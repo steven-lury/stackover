@@ -25,6 +25,11 @@ class Question extends Model
 
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();//we pass `favorites` table name bcz we don't follow the convention name `question_user`
+    }
+
     public function setTitleAttribute( $value){
 
         $this->attributes['title'] = $value;
@@ -49,6 +54,16 @@ class Question extends Model
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
+    }
+
+    public function getFavoriteCountAttribute()
+    {
+        return $this->favorites()->count();
+    }
+
+    public function getIsFavoriteAttribute()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->count() > 0;
     }
 
 }
