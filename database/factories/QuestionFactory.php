@@ -26,7 +26,7 @@ class QuestionFactory extends Factory
             'title' => rtrim($this->faker->sentence(rand(2,3)), '.'),
             'body' => $this->faker->paragraphs(rand(1, 3), true),
             'views' => rand(2, 20),
-            'vote' => rand(-5, 11)
+            //'vote' => rand(-5, 11)
             //'answers_count' => rand(0, 4) we set it dynamically in answer model by calling boot method
         ];
     }

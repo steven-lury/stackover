@@ -83,4 +83,46 @@ class User extends Authenticatable
         $siteUrl = "https://www.gravatar.com/avatar/";
         return $siteUrl.md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
     }
+
+    public function voteQuestions()
+    {
+        return $this->morphedByMany(Question::class, 'votable');
+    }
+
+    public function voteAnswers()
+    {
+        return $this->morphedByMany(Answer::class, 'votable');
+    }
+
+    public function votingQuestion(Question $question, $vote)
+    {
+        //check if the current user vote before or not, if so we have to update it
+        if( $this->voteQuestions()->where('votable_id', $question->id)->exists() ){
+            $this->voteQuestions()->updateExistingPivot($question, ['vote' => $vote]);
+        }else{
+            $this->voteQuestions()->attach($question, ['vote' => $vote]);
+        }
+
+        $question->load('votes');//load all questions'vote by users
+        $voteUp = (int) $question->votes()->wherePivot('vote', 1)->sum('vote');
+        $voteDown = (int) $question->votes()->wherePivot('vote', -1)->sum('vote');
+        $question->vote = $voteUp + $voteDown;
+        $question->save();
+
+    }
+
+    public function votingAnswer(Answer $answer, $vote)
+    {
+        //check if the current user vote before or not
+        if( $this->voteAnswers()->where('votable_id', $answer->id)->exists() ){
+            $this->voteAnswers()->updateExistingPivot($answer, ['vote' => $vote]);
+        }else{
+            $this->voteAnswers()->attach($answer, ['vote' => $vote]);
+        }
+        $answer->load('votes');//load all answers'vote by users
+        $voteUp = (int) $answer->votes()->wherePivot('vote', 1)->sum('vote');
+        $voteDown = (int) $answer->votes()->wherePivot('vote', -1)->sum('vote');
+        $answer->votes_count = $voteDown + $voteUp;
+        $answer->save();
+    }
 }

@@ -9,13 +9,25 @@
                 @foreach ($answers as $answer)
                     <div class="media">
                         <div class="d-flex flex-column vote-control">
-                            <a class="vote-up">
+                            <a class="vote-up {{ Auth::guest() ? 'off': '' }}"
+                                onclick="event.preventDefault(); document.getElementById('vote-up-answer-{{$answer->id}}').submit();"
+                            >
                                 <i class="fas fa-caret-up"></i>
                             </a>
-                            <span class="vote-count">12</span>
-                            <a class="vote-down">
+                            <form action="{{route('answer.vote', $answer->id) }}" method="POST" id="vote-up-answer-{{$answer->id}}">
+                                @csrf
+                                <input type="hidden" value="1" name="vote">
+                            </form>
+                            <span class="vote-count">{{$answer->votes_count}}</span>
+                            <a class="vote-down {{ Auth::guest() ? 'off' : ''}}"
+                                onclick="event.preventDefault(); document.getElementById('vote-down-answer-{{$answer->id}}').submit();"
+                            >
                                 <i class="fas fa-caret-down"></i>
                             </a>
+                            <form action="{{route('answer.vote', $answer->id)}}" id="vote-down-answer-{{$answer->id}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="vote" value="-1">
+                            </form>
                             @can('accept', $answer)
                                 <a class="{{$answer->accepted}} mt-2"
                                     onclick="event.preventDefault();
