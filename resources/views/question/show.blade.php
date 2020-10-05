@@ -24,7 +24,7 @@
                                 @csrf
                                 <input type="hidden" value="1" name="vote">
                             </form>
-                            <span class="vote-count">{{$question->vote}}</span>
+                            <span class="vote-count">{{$question->votes_count}}</span>
                             <a class="vote-down {{ Auth::guest() ? 'off' : ''}}"
                                 onclick="event.preventDefault(); document.getElementById('vote-down-question-{{$question->id}}').submit();"
                             >

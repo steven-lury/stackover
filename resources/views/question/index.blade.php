@@ -34,7 +34,7 @@
                     <div class="media text-muted pt-3">
                         <div class="d-flex flex-column counter">
                             <div class="vote">
-                                <strong>{{$question->vote}} </strong>{{Str::plural('vote', $question->vote)}}
+                                <strong>{{$question->votes_count}} </strong>{{Str::plural('vote', $question->votes_count)}}
                             </div>
                             <div class="status {{$question->status}}">
                                 <strong>{{$question->answers_count}} </strong>{{Str::plural('answer', $question->_count)}}

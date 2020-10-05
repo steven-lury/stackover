@@ -96,33 +96,31 @@ class User extends Authenticatable
 
     public function votingQuestion(Question $question, $vote)
     {
-        //check if the current user vote before or not, if so we have to update it
-        if( $this->voteQuestions()->where('votable_id', $question->id)->exists() ){
-            $this->voteQuestions()->updateExistingPivot($question, ['vote' => $vote]);
-        }else{
-            $this->voteQuestions()->attach($question, ['vote' => $vote]);
-        }
-
-        $question->load('votes');//load all questions'vote by users
-        $voteUp = (int) $question->votes()->wherePivot('vote', 1)->sum('vote');
-        $voteDown = (int) $question->votes()->wherePivot('vote', -1)->sum('vote');
-        $question->vote = $voteUp + $voteDown;
-        $question->save();
+        $questionVoting = $this->voteQuestions();
+        $this->_voting($questionVoting, $question, $vote);
 
     }
 
     public function votingAnswer(Answer $answer, $vote)
     {
+
+        $answerVoting = $this->voteAnswers();
+        $this->_voting($answerVoting, $answer, $vote);
+
+    }
+
+    private function _voting($relationship, $model, $vote) :void
+    {
         //check if the current user vote before or not
-        if( $this->voteAnswers()->where('votable_id', $answer->id)->exists() ){
-            $this->voteAnswers()->updateExistingPivot($answer, ['vote' => $vote]);
+        if( $relationship->where('votable_id', $model->id)->exists() ){
+            $relationship->updateExistingPivot($model, ['vote' => $vote]);
         }else{
-            $this->voteAnswers()->attach($answer, ['vote' => $vote]);
+            $relationship->attach($model, ['vote' => $vote]);
         }
-        $answer->load('votes');//load all answers'vote by users
-        $voteUp = (int) $answer->votes()->wherePivot('vote', 1)->sum('vote');
-        $voteDown = (int) $answer->votes()->wherePivot('vote', -1)->sum('vote');
-        $answer->votes_count = $voteDown + $voteUp;
-        $answer->save();
+        $model->load('votes');//load all models'vote by users
+        $voteUp = (int) $model->votes()->wherePivot('vote', 1)->sum('vote');
+        $voteDown = (int) $model->votes()->wherePivot('vote', -1)->sum('vote');
+        $model->votes_count = $voteDown + $voteUp;
+        $model->save();
     }
 }

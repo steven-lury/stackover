@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Question;
 use App\Models\User;
+use App\Traits\VotableTraits;
 
 class Answer extends Model
 {
     use HasFactory;
+    use VotableTraits;
 
     protected $fillable = ['body', 'user_id'];
 
@@ -58,8 +60,5 @@ class Answer extends Model
         return $this->id === $this->question->best_answer_id;
     }
 
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
+
 }

@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Answer;
+use App\Traits\VotableTraits;
 
 class Question extends Model
 {
     use HasFactory;
+    use VotableTraits;
 
     protected $fillable = ['title', 'body'];
 
@@ -64,11 +66,6 @@ class Question extends Model
     public function getIsFavoriteAttribute()
     {
         return $this->favorites()->where('user_id', auth()->id())->count() > 0;
-    }
-
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
     }
 
 }
