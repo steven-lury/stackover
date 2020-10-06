@@ -38,7 +38,7 @@ class Question extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function getCreatedDateAttribute()
+    public function getDateAttribute()
     {
         return $this->created_at->diffForHumans();
     }

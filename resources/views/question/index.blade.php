@@ -45,7 +45,7 @@
                         </div>
                     <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <small>Asked by:</small><strong class="d-block text-gray-dark">{{$question->user->name}}</strong><small>{{$question->created_date}}</small>
+                        <small>Asked by:</small><strong class="d-block text-gray-dark">{{$question->user->name}}</strong><small>{{$question->date}}</small>
                     </p>
                     <p class="media-body">
                         {{Str::limit($question->body, 250)}}
