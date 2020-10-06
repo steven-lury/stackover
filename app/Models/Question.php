@@ -15,6 +15,7 @@ class Question extends Model
     use VotableTraits;
 
     protected $fillable = ['title', 'body'];
+    const EXCERPT = 260;
 
     public function user(){
 
@@ -23,7 +24,7 @@ class Question extends Model
 
     public function answers(){
 
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->orderBy('votes_count', 'DESC');
 
     }
 
@@ -55,7 +56,7 @@ class Question extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return \Parsedown::instance()->text($this->body);
+        return $this->bodyHtml();
     }
 
     public function getFavoriteCountAttribute()
@@ -68,4 +69,12 @@ class Question extends Model
         return $this->favorites()->where('user_id', auth()->id())->count() > 0;
     }
 
+    public function getExcerptAttribute()
+    {
+        return Str::limit(strip_tags($this->bodyHtml()) , self::EXCERPT);
+    }
+
+    private function bodyHtml(){
+        return clean(\Parsedown::instance()->text($this->body));
+    }
 }

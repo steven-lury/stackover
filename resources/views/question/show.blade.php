@@ -24,7 +24,7 @@
                     </div>
                     <div class="media-body">
                         <p class="media-body">
-                            {!! $question->body_html !!}
+                            <div class="excerpt"> {{$question->excerpt }}</div>
                         </p>
                         <div class="row">
                             <div class="col-md-4"></div>

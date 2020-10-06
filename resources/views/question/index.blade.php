@@ -48,7 +48,7 @@
                         <small>Asked by:</small><strong class="d-block text-gray-dark">{{$question->user->name}}</strong><small>{{$question->date}}</small>
                     </p>
                     <p class="media-body">
-                        {{Str::limit($question->body, 250)}}
+                        {{$question->excerpt}}
                     </p>
                     </div>
                 </div>
