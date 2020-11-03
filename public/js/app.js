@@ -50957,6 +50957,8 @@ var map = {
 	"./API/ApiTokenManager.vue": "./resources/js/Pages/API/ApiTokenManager.vue",
 	"./API/Index": "./resources/js/Pages/API/Index.vue",
 	"./API/Index.vue": "./resources/js/Pages/API/Index.vue",
+	"./Answers/Answer": "./resources/js/Pages/Answers/Answer.vue",
+	"./Answers/Answer.vue": "./resources/js/Pages/Answers/Answer.vue",
 	"./Dashboard": "./resources/js/Pages/Dashboard.vue",
 	"./Dashboard.vue": "./resources/js/Pages/Dashboard.vue",
 	"./Profile/DeleteUserForm": "./resources/js/Pages/Profile/DeleteUserForm.vue",
@@ -50970,7 +50972,19 @@ var map = {
 	"./Profile/UpdatePasswordForm": "./resources/js/Pages/Profile/UpdatePasswordForm.vue",
 	"./Profile/UpdatePasswordForm.vue": "./resources/js/Pages/Profile/UpdatePasswordForm.vue",
 	"./Profile/UpdateProfileInformationForm": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
-	"./Profile/UpdateProfileInformationForm.vue": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue"
+	"./Profile/UpdateProfileInformationForm.vue": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
+	"./Questions/Create": "./resources/js/Pages/Questions/Create.vue",
+	"./Questions/Create.vue": "./resources/js/Pages/Questions/Create.vue",
+	"./Questions/CreateForm": "./resources/js/Pages/Questions/CreateForm.vue",
+	"./Questions/CreateForm.vue": "./resources/js/Pages/Questions/CreateForm.vue",
+	"./Questions/Question": "./resources/js/Pages/Questions/Question.vue",
+	"./Questions/Question.vue": "./resources/js/Pages/Questions/Question.vue",
+	"./Questions/QuestionIndex": "./resources/js/Pages/Questions/QuestionIndex.vue",
+	"./Questions/QuestionIndex.vue": "./resources/js/Pages/Questions/QuestionIndex.vue",
+	"./Questions/Show": "./resources/js/Pages/Questions/Show.vue",
+	"./Questions/Show.vue": "./resources/js/Pages/Questions/Show.vue",
+	"./Shared/UserInfo": "./resources/js/Pages/Shared/UserInfo.vue",
+	"./Shared/UserInfo.vue": "./resources/js/Pages/Shared/UserInfo.vue"
 };
 
 
@@ -51130,6 +51144,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_df56dab8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Answers/Answer.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Answers/Answer.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Answers\\Answer.vue'");
 
 /***/ }),
 
@@ -51613,6 +51638,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfileInformationForm_vue_vue_type_template_id_f38ebb82___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Questions/Create.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Questions/Create.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Questions\\Create.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Questions/CreateForm.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Questions/CreateForm.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Questions\\CreateForm.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Questions/Question.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Questions/Question.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Questions\\Question.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Questions/QuestionIndex.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/Questions/QuestionIndex.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Questions\\QuestionIndex.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Questions/Show.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Questions/Show.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Questions\\Show.vue'");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Shared/UserInfo.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Shared/UserInfo.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\stackover\\resources\\js\\Pages\\Shared\\UserInfo.vue'");
 
 /***/ }),
 
