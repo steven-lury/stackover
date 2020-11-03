@@ -15,6 +15,7 @@ class Question extends Model
     use VotableTraits;
 
     protected $fillable = ['title', 'body'];
+    protected $appends = ['date', 'excerpt'];
     const EXCERPT = 260;
 
     public function user(){

@@ -30,10 +30,7 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                @include('layouts._author', [
-                                    'label' => 'Asked',
-                                    'model' => $question
-                                ])
+
                             </div>
                         </div>
                     </div>

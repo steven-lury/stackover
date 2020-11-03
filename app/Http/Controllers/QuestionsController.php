@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AskQuestionRequest;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class QuestionsController extends Controller
 {
@@ -21,8 +24,11 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::with('user')->latest()->paginate(5);
-        return view('question.index', compact('questions'));
+        $questions = Question::with('user')->paginate(5);
+        //return view('question.index', compact('questions'));
+        return Inertia::render('Questions/QuestionIndex', [
+            'questions' => $questions
+        ]);
     }
 
     /**
@@ -32,7 +38,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('question.create');
+        return Inertia::render('Questions/Create');
     }
 
     /**
@@ -56,7 +62,8 @@ class QuestionsController extends Controller
     public function show(Question $question)
     {
         $question->increment('views');
-        return view('question.show', compact('question'));
+        //return view('question.show', compact('question'));
+        return Inertia::render('Questions/Show');
     }
 
     /**
@@ -82,7 +89,10 @@ class QuestionsController extends Controller
     {
         $this->authorize('update', $question);
         $question->update($request->only(['title', 'body']));
-        return redirect()->route('questions.index')->with('successMsg', 'Your Question has been updated successfully');
+        // return Inertia::render('Questions/QuestionIndex', [
+        //     'successMsg'=> 'Your Question has been updated successfully'
+        // ]);
+        return redirect()->back()->with('successMsg', 'Your Question has been updated successfully');
     }
 
     /**

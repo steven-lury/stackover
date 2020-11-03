@@ -11,22 +11,22 @@ class RenameVoteColumnOnQuestionTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->renameColumn('vote_counts', 'votes_count');
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::table('questions', function (Blueprint $table) {
+    //         $table->renameColumn('vote_counts', 'votes_count');
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->renameColumn('votes_count', 'vote_counts');
-        });
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  *
+    //  * @return void
+    //  */
+    // public function down()
+    // {
+    //     Schema::table('questions', function (Blueprint $table) {
+    //         $table->renameColumn('votes_count', 'vote_counts');
+    //     });
+    // }
 }
