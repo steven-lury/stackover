@@ -4,8 +4,12 @@ import{
     faCaretUp,
     faCaretDown,
     faStar,
-    faCheck
+    faCheck,
+    faThumbsUp,
+    faThumbsDown,
+    faEye,
+    faCommentDots
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCaretDown, faCaretUp, faStar, faCheck);
+library.add(faCaretDown, faCaretUp, faStar, faCheck, faThumbsUp, faThumbsDown, faEye, faCommentDots);
 dom.watch();
