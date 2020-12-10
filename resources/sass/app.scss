@@ -2,7 +2,9 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
 //$fa-font-path: '../webfonts';
-
+body {
+    background-color: #f5f8fa;
+}
 .counter{
     font-size: 10px;
     margin-right: 20px;

@@ -97,7 +97,7 @@ class User extends Authenticatable
     public function votingQuestion(Question $question, $vote)
     {
         $questionVoting = $this->voteQuestions();
-        $this->_voting($questionVoting, $question, $vote);
+        return $this->_voting($questionVoting, $question, $vote);
 
     }
 
@@ -105,11 +105,11 @@ class User extends Authenticatable
     {
 
         $answerVoting = $this->voteAnswers();
-        $this->_voting($answerVoting, $answer, $vote);
+        return $this->_voting($answerVoting, $answer, $vote);
 
     }
 
-    private function _voting($relationship, $model, $vote) :void
+    private function _voting($relationship, $model, $vote)
     {
         //check if the current user vote before or not
         if( $relationship->where('votable_id', $model->id)->exists() ){
@@ -122,5 +122,6 @@ class User extends Authenticatable
         $voteDown = (int) $model->votes()->wherePivot('vote', -1)->sum('vote');
         $model->votes_count = $voteDown + $voteUp;
         $model->save();
+        return $model->votes_count;
     }
 }

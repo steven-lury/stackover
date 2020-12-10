@@ -24,7 +24,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::with('user')->paginate(5);
+        $questions = Question::all()->load('user');
         //return view('question.index', compact('questions'));
         return Inertia::render('Questions/QuestionIndex', [
             'questions' => $questions
@@ -51,6 +51,7 @@ class QuestionsController extends Controller
     {
         $request->user()->questions()->create($request->only(['title', 'body']));
         return redirect()->route('questions.index')->with('successMsg', 'Your questions has been submitted');
+        // return ['successMsg'=> 'Your questions has been submitted'];
     }
 
     /**
@@ -63,7 +64,9 @@ class QuestionsController extends Controller
     {
         $question->increment('views');
         //return view('question.show', compact('question'));
-        return Inertia::render('Questions/Show');
+        return Inertia::render('Questions/Show', [
+            'question' => $question
+        ]);
     }
 
     /**
@@ -89,9 +92,7 @@ class QuestionsController extends Controller
     {
         $this->authorize('update', $question);
         $question->update($request->only(['title', 'body']));
-        // return Inertia::render('Questions/QuestionIndex', [
-        //     'successMsg'=> 'Your Question has been updated successfully'
-        // ]);
+        //return ['successMsg'=> 'Your Question has been updated successfully'];
         return redirect()->back()->with('successMsg', 'Your Question has been updated successfully');
     }
 
@@ -105,6 +106,7 @@ class QuestionsController extends Controller
     {
         $this->authorize('delete', $question);
         $question->delete();
+        // return ['successMsg'=> 'Question has been deleted successfully'];
         return redirect()->route('questions.index')->with('successMsg', 'Question has been deleted successfully');
     }
 }

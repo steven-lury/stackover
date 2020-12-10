@@ -5,17 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Answer;
+use Inertia\Inertia;
 
 class AnswersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        $answers = $question->answers()->with('user')->simplePaginate(5);
+        return  $answers;
+        // return response()->json($data);
     }
 
     /**
@@ -39,8 +46,12 @@ class AnswersController extends Controller
         $request->validate([
             'body' => 'required|min:4'
         ]);
-        $question->answers()->create(['body' => $request->body, 'user_id' => auth()->id()]);
-        return redirect()->back()->with('successMsg', 'Your Answer has been posted successfully');
+        $answer = $question->answers()->create(['body' => $request->body, 'user_id' => auth()->id()]);
+        // return redirect()->back()->with('successMsg', 'Your Answer has been posted successfully');
+        return [
+            'answer' => $answer->load('user'),
+            'successMsg' => 'Your Answer has been posted successfully'
+        ];
     }
 
     /**
@@ -81,6 +92,7 @@ class AnswersController extends Controller
         ]);
         $answer->update(['body' =>$request->body]);
         return redirect()->route('questions.show', $question->slug)->with('successMsg', 'Your Answer is Updated successfully');
+        // return ['successMsg' => 'ok'];
     }
 
     /**

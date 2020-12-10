@@ -19,11 +19,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // dynamically set the rootview based on whether the route is backend or frontend
         // can also be done in a middleware that wraps all admin routes
-        if(request()->is('admin/*')){
+        // if(request()->is('admin/*')){
             //Inertia::setRootView('admin.app');
-        } elseif(request()->is('questions*')) {
-            Inertia::setRootView('question.master');
-        }
+        // } elseif(request()->is('questions*')) {
+        //     Inertia::setRootView('question.master');
+        // }
     }
 
     /**
@@ -46,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share('flash', function () {
             return [
                 'successMsg' => Session::get('successMsg'),
+                'data' => Session::get('data')
             ];
         });
     }

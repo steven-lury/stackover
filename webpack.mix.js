@@ -1,4 +1,14 @@
 const mix = require('laravel-mix');
+// // webpack.mix.js
+// const path = require('path');
+
+// mix.webpackConfig({
+//     resolve: {
+//         alias: {
+//             ziggy: path.resolve('vendor/tightenco/ziggy/src/js/route.js'),
+//         },
+//     },
+// });
 
 /*
  |--------------------------------------------------------------------------
@@ -12,8 +22,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .copy('node_modules/prismjs/themes', 'public/css/prism-js')
     .sass('resources/sass/app.scss', 'public/css');
     // .postCss('resources/css/app.css', 'public/css', [
     //     require('postcss-import'),
     //     require('tailwindcss'),
     // ]);
+

@@ -15,7 +15,7 @@ class Question extends Model
     use VotableTraits;
 
     protected $fillable = ['title', 'body'];
-    protected $appends = ['date', 'excerpt'];
+    protected $appends = ['date', 'excerpt', 'is_favorite', 'favorite_count'];
     const EXCERPT = 260;
 
     public function user(){
@@ -67,7 +67,7 @@ class Question extends Model
 
     public function getIsFavoriteAttribute()
     {
-        return $this->favorites()->where('user_id', auth()->id())->count() > 0;
+        return $this->favorites()->where('user_id', auth()->id())->count() > 0 ? true : false;
     }
 
     public function getExcerptAttribute()

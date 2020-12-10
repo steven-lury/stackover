@@ -14,7 +14,7 @@ class Answer extends Model
     use VotableTraits;
 
     protected $fillable = ['body', 'user_id'];
-    protected $appends = ['date'];
+    protected $appends = ['date', 'body_html', 'is_best'];
 
     public function question(){
 
